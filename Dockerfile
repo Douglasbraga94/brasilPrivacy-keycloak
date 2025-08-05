@@ -4,4 +4,5 @@ COPY keycloak-imports/realm-export.json /opt/keycloak/data/import/realm-export.j
 COPY keycloak-imports/themes /opt/keycloak/themes
 ENV JAVA_OPTS="-Xms64m -Xmx256m"
 EXPOSE 8080
-CMD /bin/bash -c "/opt/keycloak/data/import/keycloak-import.sh && /opt/keycloak/bin/kc.sh start --import-realm"
+RUN /bin/bash /opt/keycloak/data/import/keycloak-import.sh
+CMD ["/opt/keycloak/bin/kc.sh", "start", "--import-realm"]
